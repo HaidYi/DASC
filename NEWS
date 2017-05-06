@@ -1,0 +1,8 @@
+CHANGES IN VERSION 0.1.0
+------------------------
+
+    o Requirements: Please install NMF, cvxclustr, Biobase R package 
+        before the installation of DASC package.
+
+    o Workflow: The function convexBatch() performs all steps 
+        for the detction of the batches in the dataset.

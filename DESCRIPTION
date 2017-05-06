@@ -1,0 +1,22 @@
+Package: DASC
+Type: Package
+Title: Detecting hidden batch factors through data adaptive adjustment
+        for biological effects
+Version: 0.99.11
+Author: Haidong Yi, Ayush T. Raman
+Maintainer: Haidong Yi <982869874@qq.com>
+Description: The package is used for identifying batches in
+        high-dimensional dataset.
+Depends: R (>= 3.4.0),
+Imports: NMF (>= 0.20.6), cvxclustr (>= 1.1.1), Biobase
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+biocViews: BatchEffect, RNASeq, GeneExpression, Normalization,
+        Preprocessing, QualityControl, StatisticalMethod, GeneTarget,
+        Clustering
+RoxygenNote: 6.0.1
+Suggests: BiocStyle, knitr, rmarkdown, DESeq2, pcaExplorer, testthat,
+        ggplot2
+VignetteBuilder: knitr
+NeedsCompilation: no
