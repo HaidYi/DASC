@@ -2,7 +2,7 @@ Package: DASC
 Type: Package
 Title: Detecting hidden batch factors through data adaptive adjustment
         for biological effects
-Version: 0.99.11
+Version: 1.0.0
 Author: Haidong Yi, Ayush T. Raman
 Maintainer: Haidong Yi <982869874@qq.com>
 Description: The package is used for identifying batches in
