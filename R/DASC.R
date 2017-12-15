@@ -21,7 +21,7 @@ require(cvxclustr)
 #' batch factor.
 #' @details
 #' The \code{DASC} function is the main function of our algorithm DASC
-#' (Data-adaptive Shrinkage and Clustering-DASC) package. The DASC includes 
+#' (Data-adaptive Shrinkage and Clustering-DASC) package. The DASC includes
 #' two main steps
 #' \itemize{ \item Data-adaptive shrinkage using convex clustering shrinkage
 #' (Implemented by convex optimization.);
@@ -41,7 +41,7 @@ require(cvxclustr)
 #' pdat <- data.frame(sample = colnames(dat), type = c(rep('A',2), rep('B',2)))
 #' rownames(pdat) <- colnames(dat)
 #' res <- DASC(edata=dat, pdata=pdat, factor=pdat$type, method='ama', type=3,
-#' lambda = 1, rank = 2, nrun = 50, spanning = FALSE,
+#' lambda = 1, rank = 2, nrun = 50, spanning = FALSE, countable = TRUE,
 #' annotation='simulated dataset')
 #'
 #' @author Haidong Yi, Ayush T. Raman
@@ -51,7 +51,7 @@ require(cvxclustr)
 #'
 
 DASC <- function(edata, pdata, factor, method="ama", type=3, lambda, rank,
-                    nrun, spanning=FALSE, annotation){
+                    nrun, spanning=FALSE, countable=TRUE, annotation){
     if (!is.null(type) && !(type %in% c(1, 2, 3))) {
         stop("type must be '1', '2', '3', or NULL")
     }
@@ -65,7 +65,13 @@ DASC <- function(edata, pdata, factor, method="ama", type=3, lambda, rank,
         names(Zero.num) <- NULL
         edata <- edata[-Zero.num, ]
     }
-    edata <- log(1 + edata)
+    if (countable == TRUE) {
+        edata = tryCatch({
+            log(1 + edata)
+        }, warning = function(e) {
+            stop("For non-countable dataset, please set parameter countable FALSE")
+        })
+    }
     if (type == 3) {
         Laplace <- trans_Laplace(as.factor(factor))
         Udata <- edata %*% solve(diag(ncol(edata)) + lambda * Laplace)
@@ -89,7 +95,7 @@ DASC <- function(edata, pdata, factor, method="ama", type=3, lambda, rank,
     metadata <- data.frame(labelDescription = names(pdata),
                             row.names = names(pdata))
     pdata <- new("AnnotatedDataFrame", data = pdata, varMetadata = metadata)
-    data_set <- ExpressionSet(assayData = edata, phenoData = pdata,
+    data_set <- ExpressionSet(assayData = Bdata, phenoData = pdata,
                                 annotation = annotation)
     data.nmf <- nmf(data_set, rank, Semi_NMF, nrun = nrun, .opt = "v",
                         objective = Loss_Fro, seed = Ini_SemiNMF, mixed = TRUE)
@@ -205,10 +211,10 @@ Sptree <- function(ADJ) {
 #' @author Haidong Yi, Ayush T. Raman
 #' @details
 #'
-#' During the traversal of the graph matrix, merge function joins two 
-#' disjoint sets into a single subset. It is a union step of Disjoint-set 
-#' algorithm by Bernard A. Galler and Michael J. Fischer. For further details, 
-#' please refer to: 
+#' During the traversal of the graph matrix, merge function joins two
+#' disjoint sets into a single subset. It is a union step of Disjoint-set
+#' algorithm by Bernard A. Galler and Michael J. Fischer. For further details,
+#' please refer to:
 #' \url{https://en.wikipedia.org/wiki/Disjoint-set_data_structure}
 #'
 
