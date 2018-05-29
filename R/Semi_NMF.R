@@ -98,7 +98,7 @@ Loss_Fro <- function(model, target) {
 #' @return a factor vector representing the classification
 #' @author Haidong Yi
 
-predict.nmf <- function(x) {
+pred.nmf <- function(x) {
     if( !is.matrix(x) ) stop("semi-NMF: only works on matrices")
     # for each column return the (row) index of the maxium
     return ( as.factor(apply(x, 2L, function(v) which.max(abs(v)))) )
