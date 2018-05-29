@@ -92,14 +92,8 @@ DASC <- function(edata, pdata, factor, method="ama", type=3, lambda, rank,
         names(Zero.num) <- NULL
         Bdata <- Bdata[-Zero.num, ]
     }
-    metadata <- data.frame(labelDescription = names(pdata),
-                            row.names = names(pdata))
-    pdata <- new("AnnotatedDataFrame", data = pdata, varMetadata = metadata)
-    data_set <- ExpressionSet(assayData = Bdata, phenoData = pdata,
-                                annotation = annotation)
-    data.nmf <- nmf(data_set, rank, Semi_NMF, nrun = nrun, .opt = "v",
-                        objective = Loss_Fro, seed = Ini_SemiNMF, mixed = TRUE)
-    return(data.nmf)
+    data.snmf <- snmf(Bdata, rank = rank, nrun = nrun)
+    data.snmf
 }
 
 #' Transform the adjacency matrix to a vector

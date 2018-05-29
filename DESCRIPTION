@@ -4,7 +4,7 @@ Title: Detecting hidden batch factors through data adaptive adjustment
         for biological effects
 Version: 1.1.0
 Author: Haidong Yi, Ayush T. Raman
-Maintainer: Haidong Yi <982869874@qq.com>
+Maintainer: Haidong Yi <HaidYi@mail.nankai.edu.cn>
 Description: The package is used for identifying batches in
         high-dimensional dataset.
 Depends: R (>= 3.4.0),
