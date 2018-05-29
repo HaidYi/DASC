@@ -128,12 +128,13 @@ Semi_NMF <- function(target, rank, iternum = 100, tol = 0.01) {
 }
 
 
+#' Predict the classification using consensus matrices
 #'
-#'
-#' @param consen
-#' @param rank
-#'
-#'
+#' @param consen a consensus matrix 
+#' @param rank rank number using to cut the tree
+#' @return a factor vector representing the category of samples
+#' @export
+#' @author Haidong Yi
 
 pred.consen <- function(consen, rank) {
   # build the tree from consensus matrix
@@ -144,13 +145,13 @@ pred.consen <- function(consen, rank) {
 }
 
 
-#'
+#' Parallel implement Semi-NMF for different ranks and times
 #'
 #' @param target
 #' @param rank
 #' @param nrun
-#' @return
-#' @export
+#' @return snmf a list containing consensus matrix, classification and dispersion
+#' @author Haidong Yi
 
 sNMF <- function(target, rank, nrun=30) {
   n_cores <- detectCores(logical = FALSE) - 1
