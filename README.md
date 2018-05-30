@@ -1,4 +1,4 @@
-Status: Travis CI [![Build Status](https://travis-ci.org/aayushraman/DASC.svg?branch=master)](https://travis-ci.org/aayushraman/DASC)
+[![Build Status](https://travis-ci.org/HaidYi/DASC.svg?branch=master)](https://travis-ci.org/HaidYi/DASC)
 
 # DASC
 
