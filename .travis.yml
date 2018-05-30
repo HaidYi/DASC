@@ -1,28 +1,15 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 # Header
-language: r
-r: bioc-devel
+language: r: 3.4.2
+r: 
+  - devel
 warnings_are_errors: false
 sudo: false
 cache: packages
 
-r_packages:
-  - covr
-
 r_build_args: "--no-build-vignettes --no-manual --no-resave-data"
-r_check_args: "--no-build-vignettes --no-manual --timings"
+r_check_args: "--no-build-vignettes --no-manual"
 
-after_success:
-  - Rscript -e 'library(covr); codecov()'
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
-
-env:
-  global:
-    - _R_CHECK_TIMINGS_="0"
 
 
