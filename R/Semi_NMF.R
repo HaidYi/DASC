@@ -2,12 +2,12 @@ require(NMF)
 require(foreach)
 require(doParallel)
 
-#' Initialization of the semi-NMF
+#' Initialization of the Semi-NMF
 #'
 #' @import NMF
-#' @param model Object of class: NMFfit
 #' @param target gene expression matrix
-#' @return \code{model} The initial objective of class: NMFfit
+#' @param rank rank used to decompose the target
+#' @return the initial point of Semi-NMF
 #'
 #' @author Haidong Yi, Ayush T. Raman
 
@@ -91,7 +91,7 @@ Loss_Fro <- function(model, target) {
 
 
 #' Predict function of semi-NMF to determine which category
-#' are the samples assigned.
+#' are the samples assigned
 #' 
 #' @import NMF
 #' @param x transpose of the coefficient matrix 

@@ -2,20 +2,20 @@
 % Please edit documentation in R/Ini_SemiNMF.R
 \name{Ini_SemiNMF}
 \alias{Ini_SemiNMF}
-\title{Initialization of the semi-NMF}
+\title{Initialization of the Semi-NMF}
 \usage{
-Ini_SemiNMF(model, target)
+Ini_SemiNMF(target, rank)
 }
 \arguments{
-\item{model}{Object of class: NMFfit}
-
 \item{target}{gene expression matrix}
+
+\item{rank}{rank used to decompose the target}
 }
 \value{
-\code{model} The initial objective of class: NMFfit
+The initial objective of class: NMFfit
 }
 \description{
-Initialization of the semi-NMF
+Initialization of the Semi-NMF
 }
 \author{
 Haidong Yi, Ayush T. Raman
