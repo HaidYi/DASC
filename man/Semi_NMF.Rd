@@ -11,7 +11,7 @@ Semi_NMF(target, rank, iternum = 100, tol = 0.01)
 
 \item{rank}{rank used to decompose target}
 
-\item{iternum}{Number of iterations}
+\item{iternum}{number of iterations}
 
 \item{tol}{tolerance for convergence}
 }
