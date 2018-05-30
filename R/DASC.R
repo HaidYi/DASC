@@ -92,7 +92,7 @@ DASC <- function(edata, pdata, factor, method="ama", type=3, lambda, rank,
         names(Zero.num) <- NULL
         Bdata <- Bdata[-Zero.num, ]
     }
-    data.snmf <- snmf(Bdata, rank = rank, nrun = nrun)
+    data.snmf <- sNMF(Bdata, rank = rank, nrun = nrun)
     data.snmf
 }
 
