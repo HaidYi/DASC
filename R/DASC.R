@@ -33,16 +33,6 @@ require(cvxclustr)
 #' @import NMF
 #'
 #' @export
-#' @examples
-#' library(NMF)
-#' library(cvxclustr)
-#' library(Biobase)
-#' dat <- data.frame(matrix(rnbinom(n=200, mu=100, size=1/0.5), ncol=4))
-#' pdat <- data.frame(sample = colnames(dat), type = c(rep('A',2), rep('B',2)))
-#' rownames(pdat) <- colnames(dat)
-#' res <- DASC(edata=dat, pdata=pdat, factor=pdat$type, method='ama', type=3,
-#' lambda = 1, rank = 2, nrun = 50, spanning = FALSE, countable = TRUE,
-#' annotation='simulated dataset')
 #'
 #' @author Haidong Yi, Ayush T. Raman
 #'
