@@ -2,7 +2,7 @@ require(NMF)
 require(foreach)
 require(doParallel)
 
-#'  Initialization of the semi-NMF
+#' Initialization of the semi-NMF
 #'
 #' @import NMF
 #' @param model Object of class: NMFfit
