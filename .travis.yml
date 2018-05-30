@@ -7,6 +7,19 @@ r:
 warnings_are_errors: false
 sudo: false
 cache: packages
+r_binary_packages:
+  - NMF
+  - cvxclustr
+  - foreach
+  - doParallel
+  - knitr
+  - rmarkdown
+  - testthat
+  - ggplot2
+bioc_packages:
+  - Biobase
+  - BiocStyle
+  - DESeq2
 
 r_build_args: "--no-build-vignettes --no-manual --no-resave-data"
 r_check_args: "--no-build-vignettes --no-manual"
