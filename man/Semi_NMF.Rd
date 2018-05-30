@@ -4,14 +4,16 @@
 \alias{Semi_NMF}
 \title{Main function of semi-NMF}
 \usage{
-Semi_NMF(target, model, iternum = 100)
+Semi_NMF(target, rank, iternum = 100, tol = 0.01)
 }
 \arguments{
 \item{target}{gene expression matrix}
 
-\item{model}{Object of class: NMFfit}
+\item{rank}{rank used to decompose target}
 
 \item{iternum}{Number of iterations}
+
+\item{tol}{tolerance for convergence}
 }
 \value{
 \code{model} the result from the semi-NMF algorithm

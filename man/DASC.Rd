@@ -9,7 +9,7 @@
 and clustering (DASC)}
 \usage{
 DASC(edata, pdata, factor, method = "ama", type = 3, lambda, rank, nrun,
-  spanning = FALSE, annotation)
+  spanning = FALSE, countable = TRUE, annotation)
 }
 \arguments{
 \item{edata}{the normalized target matrix, a data.frame The row is gene,
@@ -32,6 +32,8 @@ optimization}
 \item{nrun}{the iteration numbers of Semi-NMF}
 
 \item{spanning}{parameter is assigned as false}
+
+\item{countable}{mark whether edata is countable}
 
 \item{annotation}{An annotation of the dataset}
 }
