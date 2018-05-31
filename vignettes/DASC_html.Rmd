@@ -170,7 +170,7 @@ res <- DASC(edata = dat, pdata = metadata, factor = metadata$tissue,
 ```{r, message=FALSE, eval=TRUE}
 ## Consensus plot
 annotation <- data.frame(Batch = res$`2`$class, Tissue = as.character(metadata$tissue)) 
-consensusmap(res$`2`$consensus, annCol = annotation, main = "rank = 2", Rowv = NA)
+consensusmap(res$`2`$consensus, annCol = annotation, main = "rank = 2")
 ```
 
 
@@ -214,7 +214,7 @@ res <- DASC(edata = dat, pdata = metadata, factor = metadata$tissue,
 
 ## Consensus plot
 annotation <- data.frame(Batch = res$`10`$class, Tissue = metadata$tissue)
-consensusmap(res$`10`$consensus, annCol = annotation, main = "rank = 10", Rowv = NA)
+consensusmap(res$`10`$consensus, annCol = annotation, main = "rank = 10")
 
 ## Clustering samples based on batches
 sample.clust <- data.frame(sample.name = colnames(lognormalizedCounts), 
