@@ -1,7 +1,7 @@
 
 # DASC
 
-[![Build Status](https://travis-ci.org/HaidYi/DASC.svg?branch=master)](https://travis-ci.org/HaidYi/DASC)
+Status: Travis CI [![Build Status](https://travis-ci.org/HaidYi/DASC.svg?branch=master)](https://travis-ci.org/HaidYi/DASC)
 
 ## Overview
 
