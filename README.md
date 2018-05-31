@@ -17,7 +17,7 @@ To install the DASC package, start the terminal and enter:
 
 On linux/MacOs
 ```bash
-git clone https://https://github.com/HaidYi/DASC.git
+git clone https://github.com/HaidYi/DASC.git
 R CMD build DASC
 R CMD INSTALL DASC_*.tar.gz
 ```
