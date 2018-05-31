@@ -30,6 +30,7 @@ For concrete usages, please refer the *.html* vignettes in `inst/doc` file.
 
 If you use DASC for your analysis, please cite our paper as here below.
 
+```
 @article{Yi2018Detecting,
     title={Detecting hidden batch factors through data-adaptive adjustment for biological effects},
     author={Yi, H. and Raman, A. T. and Zhang, H. and Allen, G. I. and Liu, Z.},
@@ -39,6 +40,7 @@ If you use DASC for your analysis, please cite our paper as here below.
     pages={1141},
     year={2018},
 }
+```
 
 ## Questions ?
 
