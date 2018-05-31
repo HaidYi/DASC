@@ -3,7 +3,7 @@ title: "DASC user guide"
 author: Haidong Yi†, Ayush T. Raman†, Han Zhang, Genevera Allen, Zhandong Liu
 date: "`r doc_date()`"
 output:
-    BiocStyle::html_document2:
+    BiocStyle::html_document:
         toc_float: yes
 abstract: >
     Batch effects are one of the major source of technical variations in high 
@@ -32,7 +32,7 @@ vignette: >
 **Version**: `r packageDescription("DASC")[["Version"]]`<br />
 **Compiled date**: `r Sys.Date()`<br />
 **License**: `r packageDescription("DASC")[["License"]]`<br />
-**Prerequisites**: NMF, cvxclustr, Biobase <br />
+**Prerequisites**: NMF, cvxclustr, Biobase, foreach, doParallel <br />
 
 ```{r style, echo = FALSE, results = 'asis'}
 BiocStyle::markdown()
@@ -69,18 +69,18 @@ expression analysis.
 
 ## Citation info
 
-If you use `r Biocpkg("DASC")` for your analysis, please cite it as here below. 
-To cite package ‘DASC’ in publications use:
+If you use `r Biocpkg("DASC")` for your analysis, please cite our paper as here below. 
 
 ```
-    @Manual{, 
-        title = {DASC: Detecting hidden batch factors through data adaptive 
-            adjustment for biological effects.},
-        author = {Haidong Yi, Ayush T. Raman, Han Zhang, Genevera I. Allen and 
-            Zhandong Liu},
-        year = {2017},
-        note = {R package version 0.1.0},
-    }
+    @article{Yi2018Detecting,
+      title={Detecting hidden batch factors through data-adaptive adjustment for biological effects},
+      author={Yi, H. and Raman, A. T. and Zhang, H. and Allen, G. I. and Liu, Z.},
+      journal={Bioinformatics},
+      volume={34},
+      number={7},
+      pages={1141},
+      year={2018},
+}
 ```
 
 # Quick Example
@@ -96,6 +96,7 @@ pdat <- pData(esGolub)[samples,]
 res <- DASC(edata = dat, pdata = pdat, factor = pdat$Cell, 
                         method = 'ama', type = 3, lambda = 1, 
                         rank = 2:3, nrun = 5, annotation='esGolub Dataset')
+res
 ```
 
 # Setting up the data
@@ -168,18 +169,15 @@ res <- DASC(edata = dat, pdata = metadata, factor = metadata$tissue,
 
 ```{r, message=FALSE, eval=TRUE}
 ## Consensus plot
-consensusmap(res)
+annotation <- data.frame(Batch = res$`2`$class, Tissue = as.character(metadata$tissue)) 
+consensusmap(res$`2`$consensus, annCol = annotation, main = "rank = 2", Rowv = NA)
 ```
 
-```{r, message=FALSE, eval=TRUE}
-## Residual plot
-plot(res)
-```
 
 ```{r, message=FALSE, eval=TRUE}
 ## Batches -- dataset has 6 batches
 sample.clust <- data.frame(sample.name = colnames(lognormalizedCounts), 
-                            clust = as.vector(predict(res$fit$`2`)), 
+                            clust = as.vector(res$`2`$class), 
                             batch = metadata$seqBatch)
 ggplot(data = sample.clust, aes(x=c(1:6), y=clust, color=factor(clust))) + 
     geom_point(size = 4) + xlab("Sample Number") + ylab("Cluster Number")
@@ -215,14 +213,12 @@ res <- DASC(edata = dat, pdata = metadata, factor = metadata$tissue,
                 nrun = 100, annotation = 'Stanford Dataset')
 
 ## Consensus plot
-consensusmap(res)
-
-## Residual plot
-plot(res)
+annotation <- data.frame(Batch = res$`10`$class, Tissue = metadata$tissue)
+consensusmap(res$`10`$consensus, annCol = annotation, main = "rank = 10", Rowv = NA)
 
 ## Clustering samples based on batches
 sample.clust <- data.frame(sample.name = colnames(lognormalizedCounts), 
-                            clust = as.vector(predict(res$fit$`10`)), 
+                            clust = as.vector(res$`10`$class), 
                             batch = metadata$seqBatch)
 ggplot(data = sample.clust, aes(x=c(1:26), y=clust, color=factor(clust))) + 
     geom_point(size = 4) + xlab("Sample Number") + ylab("Cluster Number")
@@ -231,7 +227,6 @@ ggplot(data = sample.clust, aes(x=c(1:26), y=clust, color=factor(clust))) +
 ```{r, out.width = "800px", echo=FALSE}
 knitr::include_graphics("PCA_Plot_Fig1.png")
 knitr::include_graphics("Consensus_Plot_Fig2.png")
-knitr::include_graphics("NMF_Rank_Fig3.png")
 knitr::include_graphics("ClusterNumber_Fig4.png")
 ```
 
